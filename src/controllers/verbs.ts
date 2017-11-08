@@ -1,7 +1,7 @@
-import IrregularVerb from '../models/irregular-verbs';
+import Verb from '../models/verbs';
 
 export function getAllVerbs(req, res, next) {
-    IrregularVerb.find((err, data) => {
+    Verb.find((err, data) => {
         if (err) {
             res.status(500).json({err});
         }
@@ -13,7 +13,7 @@ export function getAllVerbs(req, res, next) {
 export function getVerbByTitle(req, res, next) {
     const title = req.params.title;
 
-    IrregularVerb.findById(title, (err, verb) => {
+    Verb.findById(title, (err, verb) => {
         if (err) {
             res.status(500).json({err});
         }
@@ -21,6 +21,10 @@ export function getVerbByTitle(req, res, next) {
         res.status(200).json({verb});
     });
 }
+
+export function getVerbByType(){}
+
+export function getVerbByCategory(){}
 
 export function addVerb(req, res, next) {
     const title = req.body.title;
@@ -30,6 +34,7 @@ export function addVerb(req, res, next) {
     const simplePast = req.body.simplePast;
     const pastParticiple = req.body.pastParticiple;
     const category = req.body.category;
+    const type = req.body.type;
     const examples = req.body.examples;
 
     if (!title) {
@@ -67,12 +72,17 @@ export function addVerb(req, res, next) {
         return;
     }
     
+    if (!type) {
+        res.status(422).json({err: 'Verb type is required'});
+        return;
+    }
+    
     if (!examples) {
         res.status(422).json({err: 'At least one example is required'});
         return;
     }
 
-    const verb = new IrregularVerb({
+    const verb = new Verb({
         title,
         meaning,
         pathImg,
@@ -80,6 +90,7 @@ export function addVerb(req, res, next) {
         simplePast,
         pastParticiple,
         category,
+        type,
         examples
     });
 
@@ -96,7 +107,7 @@ export function addVerb(req, res, next) {
 export function updateVerb(req, res, next) {
     const title = res.params.title;
 
-    IrregularVerb.findByIdAndUpdate(title, req.body, (err, verb) => {
+    Verb.findByIdAndUpdate(title, req.body, (err, verb) => {
         if(err) {
             res.status(500).json({err});
         }
@@ -108,7 +119,7 @@ export function updateVerb(req, res, next) {
 export function deleteVerb(req, res, next) {
     const title = req.params.title;
 
-    IrregularVerb.findByIdAndRemove(title, (err, verb) => {
+    Verb.findByIdAndRemove(title, (err, verb) => {
         if (err) {
             res.status(500).json({err});
         }

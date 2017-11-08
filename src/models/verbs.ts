@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-const IrregularVerbSchema = new Schema({
+const VerbSchema = new Schema({
     title: {
         type: String,
         required: true,
@@ -38,6 +38,11 @@ const IrregularVerbSchema = new Schema({
         required: true,
         default: ''
     },
+    type: {
+        type: String,
+        required: true,
+        default: ''
+    },
     examples: {
         type: Array,
         required: true,
@@ -45,4 +50,4 @@ const IrregularVerbSchema = new Schema({
     }
 });
 
-export default mongoose.model('irregular-verbs', IrregularVerbSchema);
+export default mongoose.model('verbs', VerbSchema);
