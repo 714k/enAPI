@@ -39,7 +39,7 @@ const VerbSchema = new Schema({
         default: ''
     },
     type: {
-        type: String,
+        type: Array,
         required: true,
         default: ''
     },
