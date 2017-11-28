@@ -6,47 +6,47 @@ const VerbSchema = new Schema({
     title: {
         type: String,
         required: true,
-        default: ''
+        default: null
     },
     meaning: {
         type: String,
         required: true,
-        default: ''
+        default: null
     },
     pathImg: {
         type: String,
         required: true,
-        default: ''
+        default: null
     },
     infinitive: {
         type: String,
         required: true,
-        default: ''
+        default: null
     },
     simplePast: {
         type: String,
         required: true,
-        default: ''
+        default: null
     },
     pastParticiple: {
         type: String,
         required: true,
-        default: ''
+        default: null
     },
     category: {
         type: String,
         required: true,
-        default: ''
+        default: null
     },
-    type: {
+    verbTypes: {
         type: Array,
         required: true,
-        default: ''
+        default: null
     },
     examples: {
         type: Array,
         required: true,
-        default: ''
+        default: null
     }
 });
 
