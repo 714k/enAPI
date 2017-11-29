@@ -12,6 +12,7 @@ export function getAllVerbs(req, res, next) {
 }
 
 export function getVerbByTitle(req, res, next) {
+  if(req.params.title) {
     const title = req.params.title;
 
     Verb.findOne({ "title": title }, (error, data) => {
@@ -21,6 +22,8 @@ export function getVerbByTitle(req, res, next) {
 
       res.status(200).json({ data });
     });
+
+  }
 }
 
 export function getVerbsByType(req, res, next){
