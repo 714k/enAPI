@@ -1,30 +1,53 @@
 import Verb from '../models/verbs';
+import { error } from 'util';
 
 export function getAllVerbs(req, res, next) {
-    Verb.find((err, data) => {
-        if (err) {
-            res.status(500).json({err});
+    Verb.find((error, data) => {
+        if (error) {
+            res.status(500).json({ error });
         }
 
-        res.status(200).json({data});
+        res.status(200).json({ data });
     });
 }
 
 export function getVerbByTitle(req, res, next) {
     const title = req.params.title;
 
-    Verb.findById(title, (err, verb) => {
-        if (err) {
-            res.status(500).json({err});
-        }
+    Verb.findOne({ "title": title }, (error, data) => {
+      if (error) {
+        res.status(500).json({ error });
+      }
 
-        res.status(200).json({verb});
+      res.status(200).json({ data });
     });
 }
 
-export function getVerbByType(){}
+export function getVerbsByType(req, res, next){
+  if (req.params.verbTypes) {
+    const types = req.params.verbTypes;
 
-export function getVerbByCategory(){}
+    Verb.find({ "verbTypes": types }, (error, data) => {
+      if (error) {
+        res.status(500).json({ error });
+      }
+      res.status(200).json({ data });
+    });
+  }  
+}
+
+export function getVerbByCategory(req, res, next){
+  if (req.params.category) {
+    const category = req.params.category;
+
+    Verb.find({ "category": category }, (error, data) => {
+      if (error) {
+        res.status(500).json({ error });
+      }
+      res.status(200).json({ data });
+    });
+  }
+}
 
 export function addVerb(req, res, next) {
     const title = req.body.title;
