@@ -1,16 +1,16 @@
 import Verb from '../models/verbs';
-import { error } from 'util';
 
 export function getAllVerbs(req, res, next) {
     Verb.find((error, data) => {
         if (error) {
-            res.status(500).json({ error });
+            res.status(500).json(error);
         }
 
-        res.status(200).json({ data });
+        res.status(200).json(data);
     });
 }
 
+/*
 export function getVerbByTitle(req, res, next) {
   if(req.params.title) {
     const title = req.params.title;
@@ -152,4 +152,4 @@ export function deleteVerb(req, res, next) {
 
         res.status(200).json({verb});
     });
-}
+}*/

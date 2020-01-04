@@ -1,12 +1,12 @@
 import * as express from 'express';
 import {
   getAllVerbs,
-  getVerbByTitle,
-  getVerbsByType,
-  getVerbByCategory,
-  addVerb,
-  updateVerb,
-  deleteVerb
+  // getVerbByTitle,
+  // getVerbsByType,
+  // getVerbByCategory,
+  // addVerb,
+  // updateVerb,
+  // deleteVerb
 } from '../controllers/verbs';
 
 export default (app) => {
@@ -20,10 +20,10 @@ export default (app) => {
   
   // API location
   app.use('/api', apiRoutes);
-  app.get('/api/v1/verbs', getAllVerbs);
-  app.get('/api/v1/verbs/:title', getVerbByTitle);
-  app.get('/api/v1/verbs/types/:verbTypes', getVerbsByType);
-  app.get('/api/v1/verbs/category/:category', getVerbByCategory);
+  app.get('/api/v1/verbs/types/all', getAllVerbs);
+  // app.get('/api/v1/verbs/:title', getVerbByTitle);
+  // app.get('/api/v1/verbs/types/:verbTypes', getVerbsByType);
+  // app.get('/api/v1/verbs/category/:category', getVerbByCategory);
 }
 
 
