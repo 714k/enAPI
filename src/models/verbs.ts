@@ -13,6 +13,21 @@ const VerbSchema = new Schema({
         required: true,
         default: null
     },
+    level_beginner: {
+        type: Number,
+        required: true,
+        default: null
+    },
+    level_intermediate: {
+        type: Number,
+        required: true,
+        default: null
+    },
+    level_advanced: {
+        type: Number,
+        required: true,
+        default: null
+    },
     pathImg: {
         type: String,
         required: true,
@@ -39,12 +54,12 @@ const VerbSchema = new Schema({
         default: null
     },
     verbTypes: {
-        type: Array,
+        type: [String],
         required: true,
         default: null
     },
     examples: {
-        type: Array,
+        type: [],
         required: true,
         default: null
     }
