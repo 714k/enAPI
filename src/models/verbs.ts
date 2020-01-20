@@ -28,7 +28,7 @@ const VerbSchema = new Schema({
         required: true,
         default: null
     },
-    pathImg: {
+    path_img: {
         type: String,
         required: true,
         default: null
@@ -38,12 +38,12 @@ const VerbSchema = new Schema({
         required: true,
         default: null
     },
-    simplePast: {
+    simple_past: {
         type: String,
         required: true,
         default: null
     },
-    pastParticiple: {
+    past_participle: {
         type: String,
         required: true,
         default: null
