@@ -2,7 +2,7 @@ import * as express from 'express';
 import {
   getAllVerbs,
   // getVerbByTitle,
-  // getVerbsByType,
+  getVerbsByTypes,
   // getVerbByCategory,
   // addVerb,
   // updateVerb,
@@ -22,7 +22,7 @@ export default (app) => {
   app.use('/api', apiRoutes);
   app.get('/api/v1/verbs/types/all', getAllVerbs);
   // app.get('/api/v1/verbs/:title', getVerbByTitle);
-  // app.get('/api/v1/verbs/types/:verbTypes', getVerbsByType);
+  app.get('/api/v1/verbs/types/:types', getVerbsByTypes);
   // app.get('/api/v1/verbs/category/:category', getVerbByCategory);
 }
 

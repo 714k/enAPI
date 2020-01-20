@@ -10,6 +10,20 @@ export function getAllVerbs(req, res, next) {
     });
 }
 
+export function getVerbsByTypes(req, res, next){
+  if (req.params.types) {
+    const types = req.params.types;
+
+    Verb.find({ "types": types }, (error, data) => {
+      if (error) {
+        res.status(500).json({ error });
+      }
+
+      res.status(200).json(data);
+    });
+  }  
+}
+
 /*
 export function getVerbByTitle(req, res, next) {
   if(req.params.title) {
@@ -24,19 +38,6 @@ export function getVerbByTitle(req, res, next) {
     });
 
   }
-}
-
-export function getVerbsByType(req, res, next){
-  if (req.params.verbTypes) {
-    const types = req.params.verbTypes;
-
-    Verb.find({ "verbTypes": types }, (error, data) => {
-      if (error) {
-        res.status(500).json({ error });
-      }
-      res.status(200).json({ data });
-    });
-  }  
 }
 
 export function getVerbByCategory(req, res, next){

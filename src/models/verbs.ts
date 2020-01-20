@@ -53,7 +53,7 @@ const VerbSchema = new Schema({
         required: true,
         default: null
     },
-    verbTypes: {
+    types: {
         type: [String],
         required: true,
         default: null
