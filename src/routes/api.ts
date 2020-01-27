@@ -3,6 +3,7 @@ import {
   getAllVerbs,
   // getVerbByTitle,
   getVerbsByTypes,
+  getVerbsByTypesAndLevel,
   // getVerbByCategory,
   // addVerb,
   // updateVerb,
@@ -23,6 +24,7 @@ export default (app) => {
   app.get('/api/v1/verbs/types/all', getAllVerbs);
   // app.get('/api/v1/verbs/:title', getVerbByTitle);
   app.get('/api/v1/verbs/types/:types', getVerbsByTypes);
+  app.get('/api/v1/verbs/:types/:difficulty/:level', getVerbsByTypesAndLevel);
   // app.get('/api/v1/verbs/category/:category', getVerbByCategory);
 }
 

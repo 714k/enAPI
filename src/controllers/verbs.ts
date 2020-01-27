@@ -24,6 +24,41 @@ export function getVerbsByTypes(req, res, next){
   }  
 }
 
+export function getVerbsByTypesAndLevel(req, res, next){
+  const params = req.params;
+
+  if (params.types && params.difficulty  && params.level) {
+    const types = params.types;
+    let level= undefined;
+
+    switch(params.difficulty){
+      case "beginner":
+        level = "level_beginner";
+        break;
+
+      case "intermediate":
+        level= "level_intermediate";
+        break;
+        
+      case "advanced":
+        level = "level_advanced";
+        break;  
+
+      default:
+        level = undefined;
+        break;  
+    }
+
+    Verb.find({"types": types, [level]: params.level}, (error, data) => {
+      if (error) {
+        res.status(500).json({ error });
+      }
+
+      res.status(200).json(data);
+    });
+  }  
+}
+
 /*
 export function getVerbByTitle(req, res, next) {
   if(req.params.title) {
