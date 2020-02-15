@@ -59,42 +59,47 @@ export function getVerbsByTypesAndLevel(req, res, next){
   }  
 }
 
-export function getTotalLevelsByVerbTypeAndDifficulty(req, res, next) {
+export async function getTotalLevelsByVerbTypeAndDifficulty(req, res, next) {
   const params = req.params;
 
   if (params.types && params.difficulty) {
     // console.log("Types & Difficulty");
     const types = params.types;
-    let level= undefined;
+    let difficulty = null;
 
     switch(params.difficulty){
       case "beginner":
-        level = "level_beginner";
+        difficulty = "level_beginner";
         break;
 
       case "intermediate":
-        level= "level_intermediate";
+        difficulty= "level_intermediate";
         break;
         
       case "advanced":
-        level = "level_advanced";
+        difficulty = "level_advanced";
         break;  
 
       default:
-        level = undefined;
+        difficulty = null
         break;  
     }
 
-    const verbs = Verb.find({"types": types});
+    const isValidVerb = await Verb.exists({"types": types});
 
-    verbs.select([level]);
-    verbs.sort({[level]: -1}).limit(1);
+    if (!isValidVerb) {
+      return res.status(400).json({error: "Is not a valid reques", validRequest: "/api/v1/verbs/[verbType]/[difficulty]/levels", params})
+    }
+
+    const verbs = Verb.find({"types": types});
+    verbs.select([difficulty]);
+    verbs.sort({[difficulty]: -1}).limit(1);
     verbs.exec((error, items) => {
       if (error) {
         res.status(500).json({ error });
       }
       const maxLevel = items[0];
-      const levels = maxLevel[level];
+      const levels = maxLevel[difficulty];
 
       res.status(200).json({ levels });
     });
